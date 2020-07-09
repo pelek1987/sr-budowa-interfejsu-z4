@@ -1,18 +1,26 @@
 import React, { Component } from "react";
 
+import UsersList from './UsersList';
 class UsersContainer extends Component {
+  state = {
+    users: []
+  };
+  fetchData = () => {
+    fetch("https://randomuser.me/api/?results=10")
+      .then(response => response.json())
+      .then(data => this.setState({ users: data.results }))
+      .catch(error => console.error(error));
+  }
+  componentDidMount() {
+    this.fetchData();
+  }
+  handleRefresh = () => {
+    this.fetchData();
+  }
+
   render() {
-    const { data } = this.props;
-    return (
-      <div className="users">
-        {data.map(user => (
-          <div className="users__user" key={user.login.uuid}>
-            <div className="users__user-name">{user.name.first}</div>
-            <div className="users__user-surname">{user.name.last}</div>
-          </div>
-        ))}
-      </div>
-    );
+    const { users } = this.state;
+    return <UsersList users={users} onRefresh={this.handleRefresh} />
   }
 }
 
