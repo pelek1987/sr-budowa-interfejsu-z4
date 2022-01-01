@@ -40,12 +40,18 @@ class UsersContainer extends Component {
             showSearchForm: false
         })
     }
-    toggleSearchForm = (e) => {
+    showSearchForm = (e) => {
         const {showSearchForm} = this.state;
         e.preventDefault();
         if (e.keyCode === 13) {
-            this.setState({showSearchForm: !showSearchForm});
+            this.setState({showSearchForm: true});
         }
+    }
+
+    hideSearchForm = () => {
+        this.setState({
+            showSearchForm: false,
+        })
     }
 
     componentDidMount() {
@@ -59,7 +65,8 @@ class UsersContainer extends Component {
             <>
                 <FormToggler
                     ref={this.togglerRef}
-                    onKeyDown={this.toggleSearchForm}
+                    onKeyDown={this.showSearchForm}
+                    onClick={()=> this.setState({showSearchForm: true})}
                 />
                 {showSearchForm && (
                     <Form onSubmit={this.handleSubmit}>
@@ -74,6 +81,7 @@ class UsersContainer extends Component {
                         />
                         <Button label="Search" isSubmitButton/>
                         <Button label="Reset" onClick={this.handleReset}/>
+                        <Button label="Hide" onClick={this.hideSearchForm}/>
                     </Form>
                 )}
                 <UsersList users={users}/>
