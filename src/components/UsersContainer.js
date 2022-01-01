@@ -41,7 +41,6 @@ class UsersContainer extends Component {
         })
     }
     showSearchForm = (e) => {
-        const {showSearchForm} = this.state;
         e.preventDefault();
         if (e.keyCode === 13) {
             this.setState({showSearchForm: true});
