@@ -1,12 +1,10 @@
 import React from 'react';
-
 import User from './User';
 
-function UsersList({ users, onRefresh }) {
+function UsersList({ users }) {
   return(
     <div className="users">
-      <button onClick={onRefresh}>refresh</button>
-      {users.map(user => ( <User key={user.login.uuid} user={user} />))}
+      {users.map(user => ( <User key={user._id} user={user} />))}
     </div>
   );
 }

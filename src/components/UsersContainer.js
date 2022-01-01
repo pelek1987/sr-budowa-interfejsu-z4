@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import api from '../api';
 
 import UsersList from './UsersList';
 class UsersContainer extends Component {
@@ -6,21 +7,16 @@ class UsersContainer extends Component {
     users: []
   };
   fetchData = () => {
-    fetch("https://randomuser.me/api/?results=10")
-      .then(response => response.json())
-      .then(data => this.setState({ users: data.results }))
-      .catch(error => console.error(error));
+    api.get('users.json')
+            .then(data => this.setState({users: data}));
   }
   componentDidMount() {
-    this.fetchData();
-  }
-  handleRefresh = () => {
     this.fetchData();
   }
 
   render() {
     const { users } = this.state;
-    return <UsersList users={users} onRefresh={this.handleRefresh} />
+    return <UsersList users={users} />
   }
 }
 

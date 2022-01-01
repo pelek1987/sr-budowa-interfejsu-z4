@@ -14,11 +14,11 @@
   padding: 4px;
 }
 
-.users__name {
+.users__user-name {
   font-size: 26px;
   font-weight: bold;
 }
 
-.users__surname {
+.users__user-email, .users__user-phone {
   font-size: 18px;
 }
