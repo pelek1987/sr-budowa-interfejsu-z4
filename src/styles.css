@@ -22,3 +22,21 @@
 .users__user-email, .users__user-phone {
   font-size: 18px;
 }
+
+.navigation {
+  margin-bottom: 30px;
+}
+
+.navigation__list {
+  list-style: none;
+}
+
+.navigation__list li {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.navigation__list li a {
+  color: #000;
+  text-decoration: none;
+}
